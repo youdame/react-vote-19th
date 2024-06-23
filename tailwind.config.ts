@@ -31,6 +31,12 @@ const config: Config = {
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
       },
+      colors: {
+        blue: {
+          base: "#384084",
+          disabled: "rgba(56, 64, 132, 0.5)",
+        },
+      },
     },
   },
   plugins: [],
