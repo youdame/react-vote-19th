@@ -7,7 +7,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-unused-vars": "warn",
-    "no-plusplus": "off" // ++나 -- 연산자를 사용하는 것을 허용함
+    "no-plusplus": "off"
   },
   "ignorePatterns": ["**/*.css"]
 }

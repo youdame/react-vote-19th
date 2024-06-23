@@ -4,6 +4,6 @@
   "singleQuote": false,
   "trailingComma": "all",
   "semi": true,
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
