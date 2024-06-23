@@ -6,3 +6,7 @@
 
 @layer utilities {
 }
+
+html {
+  font-family: "Pretendard", sans-serif;
+}
