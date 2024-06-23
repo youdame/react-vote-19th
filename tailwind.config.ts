@@ -4,10 +4,8 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
-      extend: {
-        fontFamily: {
-          pretendard: ["Pretendard", "sans-serif"],
-        },
+      fontFamily: {
+        pretendard: ["Pretendard", "sans-serif"],
       },
     },
   },
