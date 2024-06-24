@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex-center flex-column pt-70pxr">
+    <main className="flex-center flex-column">
       <VoteTitle>파트장 / 데모데이 투표</VoteTitle>
       <div className="flex gap-100pxr pt-70pxr">
         <Link href="/leader">
