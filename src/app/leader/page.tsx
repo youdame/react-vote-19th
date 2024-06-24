@@ -16,20 +16,15 @@ function LeaderPage() {
       <div className="flex gap-100pxr pt-70pxr">
         <div className="flex-column flex-center gap-20pxr">
           {isVoteFEDone ? (
-            <>
-              <BigSelectBtn btnTexts={["FRONT-END", "파트장 투표"]} variant={"disabled"} />
-              <Link href="/leader/result-front">
-                <GenSelectBtn>결과보기</GenSelectBtn>
-              </Link>
-            </>
+            <BigSelectBtn btnTexts={["FRONT-END", "파트장 투표"]} variant={"disabled"} />
           ) : (
-            <>
-              <Link href="/leader/vote-front">
-                <BigSelectBtn btnTexts={["FRONT-END", "파트장 투표"]} />
-              </Link>
-              <GenSelectBtn variant="disabled">결과보기</GenSelectBtn>
-            </>
+            <Link href="/leader/vote-front">
+              <BigSelectBtn btnTexts={["FRONT-END", "파트장 투표"]} />
+            </Link>
           )}
+          <Link href="/leader/result-front">
+            <GenSelectBtn>결과보기</GenSelectBtn>
+          </Link>
         </div>
         <div className="flex-column flex-center gap-20pxr">
           {isVoteBEDone ? (
