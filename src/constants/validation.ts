@@ -24,4 +24,4 @@ export const USERNAME_STANDARD = /^[a-zA-Z0-9_-]{5,15}$/;
 export const EMAIL_STANDARD = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
 
 // 비밀번호 형식: 영문, 숫자 포함 8자 이상
-export const PASSWORD_STANDARD = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+export const PASSWORD_STANDARD = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;

@@ -19,18 +19,22 @@ interface InputProps {
   label: string;
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
+  rules?: RegisterOptions;
 }
 
-export default function Input({ label, type, placeholder, control, name }: InputProps) {
+export default function Input({ label, type, placeholder, control, name, rules }: InputProps) {
   const {
     field,
     fieldState: { error },
-  } = useController({ control, name, rules: inputRules[name] });
+  } = useController({ control, name, rules: rules ? rules : inputRules[name] });
 
   return (
     <div className="flex-column gap-15pxr">
-      <label className="text-20pxr text-black">{label}</label>
+      <label htmlFor={name} className="text-20pxr text-black">
+        {label}
+      </label>
       <input
+        id={name}
         type={type}
         placeholder={placeholder}
         // onChange={field.onChange}
@@ -42,7 +46,7 @@ export default function Input({ label, type, placeholder, control, name }: Input
         className="h-60pxr w-660pxr rounded-xl border border-gray-400 px-15pxr py-18pxr focus:border-blue-base"
       />
 
-      {error && <p className="text-red">{error.message}</p>}
+      {error && <p className="text-red-600">{error.message}</p>}
     </div>
   );
 }
@@ -62,7 +66,7 @@ export const inputRules: Record<FieldPath<FieldValues>, RegisterOptions> = {
   },
   password: {
     required: ERROR_PASSWORD_EMPTY,
-    minLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
+    minLength: { value: 4, message: ERROR_PASSWORD_VALIDATION },
   },
   passwordCheck: {
     required: ERROR_PASSWORD_SECOND_EMPTY,
