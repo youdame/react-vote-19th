@@ -1,8 +1,8 @@
 "use client";
 import { cva } from "class-variance-authority";
 import { usePathname } from "next/navigation";
-import Logo from "#/images/ceos-logo.svg";
 import Link from "next/link";
+import Logo from "#/images/ceos-logo.svg";
 
 /* TODO : API 연결
 1. 임시 변수
@@ -17,7 +17,9 @@ const Header = () => {
 
   return (
     <nav className="top-0pxr inset-x-0pxr fixed z-50 flex h-100pxr w-full items-center bg-white px-40pxr pt-40pxr">
-      <Logo />
+      <Link href="/">
+        <Logo />
+      </Link>
       <div className="flex-center ml-auto flex gap-15pxr">
         {isUser ? (
           <>
