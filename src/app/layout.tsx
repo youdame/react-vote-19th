@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/common/Header";
 
 export const metadata: Metadata = {
   title: "CEOS Vote",
@@ -13,7 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="flex min-h-screen justify-center">{children}</body>
+      <body className="flex min-h-screen justify-center">
+        <div className="flex-column w-full">
+          <Header />
+          <div className="pt-110pxr">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

@@ -27,6 +27,12 @@ const config: Config = {
         return acc;
       }, {}),
     },
+    borderRadius: {
+      ...range(0, 2000).reduce((acc: AccType, px: number) => {
+        acc[`${px}pxr`] = pxToRem(px);
+        return acc;
+      }, {}),
+    },
     extend: {
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
