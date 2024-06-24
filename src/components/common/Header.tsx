@@ -2,9 +2,14 @@
 import { cva } from "class-variance-authority";
 import { usePathname } from "next/navigation";
 import Logo from "#/images/ceos-logo.svg";
+import Link from "next/link";
 
-// TODO : 임시 변수 및 로그인 시 유저명 렌더링 수정
-const isUser = true; // 임시 변수 (로그인 여부)
+/* TODO : API 연결
+1. 임시 변수
+2. 로그인 상태면 로그인한 유저명 렌더링
+3. 로그아웃 버튼 클릭 시 로그아웃
+*/
+const isUser = false; // 임시 변수 (로그인 여부)
 
 const Header = () => {
   const path = usePathname();
@@ -17,12 +22,18 @@ const Header = () => {
         {isUser ? (
           <>
             <div>Azito FE 이나현</div>
-            <button className={ButtonVariants()}>로그아웃</button>
+            <button className={`${BackVariants()} ${TextVariants()}`}>로그아웃</button>
           </>
         ) : (
           <>
-            <button className={ButtonVariants()}>로그인</button>
-            <button className={ButtonVariants({ bgColor: "blue", textColor: "white" })}>회원가입</button>
+            <Link href="/login">
+              <button className={`${BackVariants()} ${TextVariants()}`}>로그인</button>
+            </Link>
+            <Link href="/sign-up">
+              <button className={`${BackVariants({ variant: "blue" })} ${TextVariants({ variant: "white" })}`}>
+                회원가입
+              </button>
+            </Link>
           </>
         )}
       </div>
@@ -32,19 +43,26 @@ const Header = () => {
 
 export default Header;
 
-const ButtonVariants = cva(`border border-blue-base rounded-20pxr flex-center px-13pxr py-7pxr`, {
+const BackVariants = cva(`border border-blue-base rounded-20pxr flex-center px-13pxr py-7pxr`, {
   variants: {
-    bgColor: {
+    variant: {
       default: "bg-white",
       blue: "bg-blue-base",
     },
-    textColor: {
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+const TextVariants = cva(``, {
+  variants: {
+    variant: {
       default: "text-black",
       white: "text-white",
     },
   },
   defaultVariants: {
-    bgColor: "default",
-    textColor: "default",
+    variant: "default",
   },
 });
