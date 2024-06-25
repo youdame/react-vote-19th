@@ -1,5 +1,6 @@
 import {
   EMAIL_STANDARD,
+  ERROR_EMAIL_CHECK,
   ERROR_EMAIL_DUPLICATED,
   ERROR_EMAIL_EMPTY,
   ERROR_PASSWORD_EMPTY,
@@ -57,7 +58,7 @@ export const inputRules: Record<FieldPath<FieldValues>, RegisterOptions> = {
   },
   email: {
     required: ERROR_EMAIL_EMPTY,
-    pattern: { value: EMAIL_STANDARD, message: ERROR_EMAIL_DUPLICATED },
+    pattern: { value: EMAIL_STANDARD, message: ERROR_EMAIL_CHECK },
   },
   username: {
     required: ERROR_USERNAME_EMPTY,
