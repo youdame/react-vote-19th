@@ -68,7 +68,4 @@ export const inputRules: Record<FieldPath<FieldValues>, RegisterOptions> = {
     required: ERROR_PASSWORD_EMPTY,
     minLength: { value: 4, message: ERROR_PASSWORD_VALIDATION },
   },
-  passwordCheck: {
-    required: ERROR_PASSWORD_SECOND_EMPTY,
-  },
 };

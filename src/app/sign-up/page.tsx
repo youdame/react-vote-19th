@@ -1,6 +1,7 @@
 "use client";
 import Input from "@/components/common/Input";
 import { ERROR_PASSWORD_SECOND_EMPTY } from "@/constants/validation";
+import Link from "next/link";
 
 import { useEffect } from "react";
 import { FieldValues, useForm, useWatch } from "react-hook-form";
@@ -16,6 +17,7 @@ function SignupPage() {
   const watchPassword = useWatch({ name: "password", control });
   const watchPasswordCheck = useWatch({ name: "passwordCheck", control });
 
+  const selectStyle = "flex h-40pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
   useEffect(() => {
     if (watchPassword !== watchPasswordCheck && watchPasswordCheck) {
       setError("passwordCheck", {
@@ -29,7 +31,7 @@ function SignupPage() {
 
   return (
     <div className="flex-center w-full bg-blue-base">
-      <div className="flex-column h-850pxr w-800pxr gap-20pxr rounded-3xl bg-white px-60pxr py-30pxr">
+      <div className="flex-column min-h-800pxr w-800pxr gap-20pxr rounded-3xl bg-white px-60pxr py-30pxr">
         <Input control={control} name="name" label="이름" placeholder="이름을 입력하세요." type="text" />
         <Input control={control} name="email" label="이메일" placeholder="이메일을 입력하세요." type="text" />
         <Input control={control} name="username" label="아이디" placeholder="아이디를 입력하세요." type="text" />
@@ -56,6 +58,35 @@ function SignupPage() {
             },
           }}
         />
+        <div className="flex-column items-center justify-center gap-20pxr">
+          <label className="flex self-start text-20pxr">팀 이름 / 파트 </label>
+          <div className="flex w-600pxr justify-between">
+            <select className={selectStyle}>
+              <option className="text-white" value="" selected hidden>
+                팀 선택하기
+              </option>
+              <option className="bg-white">AZITO</option>
+              <option>BEATBUDDY</option>
+              <option>PETPLATE</option>
+              <option>COUPLELOG</option>
+              <option>TIG</option>
+            </select>
+
+            <select className={selectStyle}>
+              <option className="text-white" value="" selected hidden>
+                파트 선택하기
+              </option>
+              <option>FRONTEND</option>
+              <option>BACKEND</option>
+            </select>
+          </div>
+        </div>
+        <div className="mt-30pxr flex justify-center gap-7pxr">
+          <p>이미 회원이신가요?</p>
+          <Link href="/login" className="text-blue-base underline-offset-1">
+            로그인 하기
+          </Link>
+        </div>
       </div>
     </div>
   );
