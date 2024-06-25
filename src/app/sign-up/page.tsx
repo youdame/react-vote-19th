@@ -70,7 +70,6 @@ function SignupPage() {
     onSuccess: async () => {
       try {
         const result = await postSignIn({ username: getValues("username"), password: getValues("password") });
-        console.log(result);
         if (result.status === 200) {
           toast.success("회원가입이 완료되었습니다.");
           router.push("/");
@@ -142,7 +141,9 @@ function SignupPage() {
             </div>
           </div>
           <div className="flex-center mt-10pxr">
-            <Button disabled={!isValid}>회원가입</Button>
+            <Button disabled={!isValid || signupMutation.isPending}>
+              {signupMutation.isPending ? "회원가입 중..." : "회원가입"}
+            </Button>
           </div>
           <div className="flex justify-center gap-7pxr">
             <p>이미 회원이신가요?</p>
