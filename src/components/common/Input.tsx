@@ -12,7 +12,7 @@ import {
 } from "@/constants/validation";
 
 import { ERROR_NAME_EMPTY, ERROR_NAME_VALIDATION, NAME_STANDARD } from "@/constants/validation";
-import { Control, FieldPath, FieldValues, RegisterOptions, useController, useForm } from "react-hook-form";
+import { Control, FieldPath, FieldValues, RegisterOptions, useController } from "react-hook-form";
 
 interface InputProps {
   type: "text" | "email" | "password";
