@@ -12,10 +12,10 @@ import { useMutation } from "@tanstack/react-query";
 import { postSignUp, PostSignUpReq } from "@/api/auth";
 
 export const teamOptions = [
-  { value: "AZITO" },
-  { value: "BEATBUDDY" },
-  { value: "PETPLATE" },
-  { value: "COUPLELOG" },
+  { value: "Azito" },
+  { value: "BeatBuddy" },
+  { value: "PetPlate" },
+  { value: "CoupleLog" },
   { value: "TIG" },
 ];
 
