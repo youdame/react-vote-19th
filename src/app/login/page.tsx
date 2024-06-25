@@ -8,6 +8,9 @@ import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { postSignIn, PostSignInReq } from "@/api/auth";
 import { DevTool } from "@hookform/devtools";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 
 function LoginPage() {
   const method = useForm<FieldValues>({
@@ -30,8 +33,24 @@ function LoginPage() {
 
   const watchPasswordVisibleCheckBox = useWatch({ name: "passwordVisibleCheckBox", control });
 
+  const router = useRouter();
+
   const loginMutation = useMutation({
     mutationFn: (data: PostSignInReq) => postSignIn(data),
+    onSuccess: (res) => {
+      toast.success("로그인이 완료되었습니다.");
+      router.push("/");
+    },
+    onError: (e) => {
+      if (e instanceof AxiosError) {
+        if (e.response?.status === 401) {
+          setError("password", {
+            type: "validate",
+            message: "비밀번호가 틀렸습니다.",
+          });
+        }
+      }
+    },
   });
 
   const handleOnSubmit = async (data: FieldValues) => {
