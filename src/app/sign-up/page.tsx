@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/common/Button";
 import CheckBox from "@/components/common/CheckBox";
 import Input from "@/components/common/Input";
 import { ERROR_PASSWORD_SECOND_EMPTY } from "@/constants/validation";
@@ -13,7 +14,13 @@ function SignupPage() {
     reValidateMode: "onChange",
   });
 
-  const { control, setError, clearErrors, getValues } = method;
+  const {
+    control,
+    setError,
+    clearErrors,
+    getValues,
+    formState: { isValid },
+  } = method;
 
   const watchPassword = useWatch({ name: "password", control });
   const watchPasswordCheck = useWatch({ name: "passwordCheck", control });
@@ -30,7 +37,7 @@ function SignupPage() {
     }
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
 
-  const selectStyle = "flex h-40pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
+  const selectStyle = "flex h-45pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
 
   return (
     <div className="flex-center w-full bg-blue-base">
@@ -85,9 +92,12 @@ function SignupPage() {
             </select>
           </div>
         </div>
-        <div className="mt-30pxr flex justify-center gap-7pxr">
+        <div className="flex-center mt-10pxr">
+          <Button disabled={!isValid}>회원가입</Button>
+        </div>
+        <div className="flex justify-center gap-7pxr">
           <p>이미 회원이신가요?</p>
-          <Link href="/login" className="text-blue-base underline-offset-1">
+          <Link href="/login" className="text-blue-base underline underline-offset-2">
             로그인 하기
           </Link>
         </div>
