@@ -1,8 +1,7 @@
 "use client";
 import Button from "@/components/common/Button";
 import CheckBox from "@/components/common/CheckBox";
-import Input from "@/components/common/Input";
-import { useEffect } from "react";
+
 import { FieldValues, useForm, useWatch } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
@@ -11,6 +10,7 @@ import { DevTool } from "@hookform/devtools";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
+import Input from "@/components/common/Input";
 
 function LoginPage() {
   const method = useForm<FieldValues>({

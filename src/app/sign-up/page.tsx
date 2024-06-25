@@ -11,10 +11,10 @@ import { FieldValues, useForm, useWatch } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postSignIn, postSignUp, PostSignUpReq } from "@/api/auth";
 import toast from "react-hot-toast";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
-export const teamOptions = [
+const teamOptions = [
   { value: "Azito" },
   { value: "BeatBuddy" },
   { value: "PetPlate" },
@@ -22,7 +22,7 @@ export const teamOptions = [
   { value: "TIG" },
 ];
 
-export const partOptions = [{ value: "프론트엔드" }, { value: "백엔드" }];
+const partOptions = [{ value: "프론트엔드" }, { value: "백엔드" }];
 
 function SignupPage() {
   const method = useForm<FieldValues>({
@@ -67,7 +67,7 @@ function SignupPage() {
   const signupMutation = useMutation({
     mutationFn: (data: PostSignUpReq) => postSignUp(data),
 
-    onSuccess: async (res) => {
+    onSuccess: async () => {
       try {
         const result = await postSignIn({ username: getValues("username"), password: getValues("password") });
         console.log(result);
