@@ -8,6 +8,8 @@ import Link from "next/link";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { FieldValues, useForm, useWatch } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { postSignUp, PostSignUpReq } from "@/api/auth";
 
 export const teamOptions = [
   { value: "AZITO" },
@@ -17,7 +19,7 @@ export const teamOptions = [
   { value: "TIG" },
 ];
 
-export const partOptions = [{ value: "FRONTEND" }, { value: "BACKEND" }];
+export const partOptions = [{ value: "프론트엔드" }, { value: "백엔드" }];
 
 function SignupPage() {
   const method = useForm<FieldValues>({
@@ -31,6 +33,7 @@ function SignupPage() {
     clearErrors,
     getValues,
     formState: { isValid },
+    handleSubmit,
   } = method;
 
   const watchPassword = useWatch({ name: "password", control });
@@ -48,9 +51,25 @@ function SignupPage() {
     }
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
 
+  const signupMutation = useMutation({
+    mutationFn: (data: PostSignUpReq) => postSignUp(data),
+  });
+  const handleOnSubmit = async (data: FieldValues) => {
+    console.log(data);
+
+    const userData: PostSignUpReq = {
+      name: data.name,
+      email: data.email,
+      username: data.username,
+      password: data.password,
+      teamName: data.teamName,
+      part: data.part,
+    };
+    signupMutation.mutate(userData);
+  };
   return (
     <>
-      <form className="flex-center w-full bg-blue-base">
+      <form onSubmit={handleSubmit(handleOnSubmit)} className="flex-center w-full bg-blue-base">
         <div className="flex-column min-h-800pxr w-800pxr gap-20pxr rounded-3xl bg-white px-60pxr py-30pxr">
           <Input control={control} name="name" label="이름" placeholder="이름을 입력하세요." type="text" />
           <Input control={control} name="email" label="이메일" placeholder="이메일을 입력하세요." type="text" />

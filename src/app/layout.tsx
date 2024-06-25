@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Providers from "@/app/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "CEOS Vote",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="flex min-h-screen justify-center">{children}</body>
+      <body className="flex min-h-screen justify-center">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
