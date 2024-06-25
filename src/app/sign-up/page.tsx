@@ -9,13 +9,16 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { FieldValues, useForm, useWatch } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { postSignUp, PostSignUpReq } from "@/api/auth";
+import { postSignIn, postSignUp, PostSignUpReq } from "@/api/auth";
+import toast from "react-hot-toast";
+import { AxiosError, AxiosResponse } from "axios";
+import { useRouter } from "next/navigation";
 
 export const teamOptions = [
   { value: "Azito" },
   { value: "BeatBuddy" },
   { value: "PetPlate" },
-  { value: "CoupleLog" },
+  { value: "Couplelog" },
   { value: "TIG" },
 ];
 
@@ -25,6 +28,15 @@ function SignupPage() {
   const method = useForm<FieldValues>({
     mode: "onTouched",
     reValidateMode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      username: "",
+      password: "",
+      passwordCheck: "",
+      teamName: "",
+      part: "",
+    },
   });
 
   const {
@@ -51,12 +63,36 @@ function SignupPage() {
     }
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
 
+  const router = useRouter();
   const signupMutation = useMutation({
     mutationFn: (data: PostSignUpReq) => postSignUp(data),
-  });
-  const handleOnSubmit = async (data: FieldValues) => {
-    console.log(data);
 
+    onSuccess: async (res) => {
+      try {
+        const result = await postSignIn({ username: getValues("username"), password: getValues("password") });
+        console.log(result);
+        if (result.status === 200) {
+          toast.success("회원가입이 완료되었습니다.");
+          router.push("/");
+        }
+      } catch (loginError) {
+        console.error("로그인 시도 실패:", loginError);
+        toast.error("회원가입은 성공했지만, 자동 로그인이 실패했습니다.");
+      }
+    },
+    onError: (e) => {
+      if (e instanceof AxiosError) {
+        if (e.response?.data?.message === "이미 존재하는 아이디입니다.") {
+          setError("username", { type: "validate", message: String(e.response?.data?.message) });
+        }
+        if (e.response?.data?.message === "이미 존재하는 이메일입니다.") {
+          setError("email", { type: "validate", message: String(e.response?.data?.message) });
+        }
+      }
+    },
+  });
+
+  const handleOnSubmit = async (data: FieldValues) => {
     const userData: PostSignUpReq = {
       name: data.name,
       email: data.email,

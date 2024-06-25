@@ -13,6 +13,10 @@ function LoginPage() {
   const method = useForm<FieldValues>({
     mode: "onTouched",
     reValidateMode: "onChange",
+    defaultValues: {
+      username: "",
+      password: "",
+    },
   });
 
   const {
@@ -24,7 +28,6 @@ function LoginPage() {
     clearErrors,
   } = method;
 
-  const watchPassword = useWatch({ name: "password", control });
   const watchPasswordVisibleCheckBox = useWatch({ name: "passwordVisibleCheckBox", control });
 
   const loginMutation = useMutation({
@@ -36,6 +39,7 @@ function LoginPage() {
       username: data.username,
       password: data.password,
     };
+
     loginMutation.mutate(userData);
   };
 

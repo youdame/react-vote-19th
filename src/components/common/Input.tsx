@@ -7,6 +7,7 @@ import {
   ERROR_PASSWORD_VALIDATION,
   ERROR_USERNAME_EMPTY,
   ERROR_USERNAME_VALIDATION,
+  PASSWORD_STANDARD,
   USERNAME_STANDARD,
 } from "@/constants/validation";
 
@@ -66,6 +67,6 @@ export const inputRules: Record<FieldPath<FieldValues>, RegisterOptions> = {
   },
   password: {
     required: ERROR_PASSWORD_EMPTY,
-    minLength: { value: 4, message: ERROR_PASSWORD_VALIDATION },
+    pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
   },
 };

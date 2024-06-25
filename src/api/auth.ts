@@ -8,8 +8,9 @@ export interface PostSignUpReq {
   part: string;
   teamName: string;
 }
+
 export const postSignUp = async (userData: PostSignUpReq) => {
-  await instance.post("api/v1/users", userData);
+  return await instance.post("api/v1/users", userData);
 };
 
 export interface PostSignInReq {
@@ -18,5 +19,5 @@ export interface PostSignInReq {
 }
 
 export const postSignIn = async (userData: PostSignInReq) => {
-  await instance.post("/login", userData);
+  return await instance.post("/login", userData);
 };

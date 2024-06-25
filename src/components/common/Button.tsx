@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {}
 
-export default function Button({ disabled, ...attribute }: ButtonProps) {
+export default function Button({ disabled = false, ...attribute }: ButtonProps) {
   return (
     <button
       {...attribute}
