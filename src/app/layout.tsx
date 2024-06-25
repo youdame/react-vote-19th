@@ -15,6 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       <body className="flex min-h-screen justify-center">
         <Providers>{children}</Providers>
         <Toaster containerStyle={{ fontSize: "1rem", fontWeight: "600" }} />
