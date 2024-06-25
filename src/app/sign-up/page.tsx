@@ -2,11 +2,22 @@
 import Button from "@/components/common/Button";
 import CheckBox from "@/components/common/CheckBox";
 import Input from "@/components/common/Input";
+import SelectInput from "@/components/common/SelectInput";
 import { ERROR_PASSWORD_SECOND_EMPTY } from "@/constants/validation";
 import Link from "next/link";
 
 import { useEffect } from "react";
 import { FieldValues, useForm, useWatch } from "react-hook-form";
+
+export const teamOptions = [
+  { value: "AZITO" },
+  { value: "BEATBUDDY" },
+  { value: "PETPLATE" },
+  { value: "COUPLELOG" },
+  { value: "TIG" },
+];
+
+export const partOptions = [{ value: "FRONTEND" }, { value: "BACKEND" }];
 
 function SignupPage() {
   const method = useForm<FieldValues>({
@@ -36,8 +47,6 @@ function SignupPage() {
       clearErrors("passwordCheck");
     }
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
-
-  const selectStyle = "flex h-45pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
 
   return (
     <div className="flex-center w-full bg-blue-base">
@@ -72,7 +81,7 @@ function SignupPage() {
         <div className="flex-column items-center justify-center gap-20pxr">
           <label className="flex self-start text-20pxr">팀 이름 / 파트 </label>
           <div className="flex w-600pxr justify-between">
-            <select className={selectStyle}>
+            {/* <select>
               <option className="text-white" value="" selected hidden>
                 팀 선택하기
               </option>
@@ -81,15 +90,16 @@ function SignupPage() {
               <option>PETPLATE</option>
               <option>COUPLELOG</option>
               <option>TIG</option>
-            </select>
-
-            <select className={selectStyle}>
+            </select> */}
+            <SelectInput control={control} name="teamName" options={teamOptions} placeholder="팀 선택하기" />
+            {/* <select>
               <option className="text-white" value="" selected hidden>
                 파트 선택하기
               </option>
               <option>FRONTEND</option>
               <option>BACKEND</option>
-            </select>
+            </select> */}
+            <SelectInput control={control} name="part" options={partOptions} placeholder="파트 선택하기" />
           </div>
         </div>
         <div className="flex-center mt-10pxr">
