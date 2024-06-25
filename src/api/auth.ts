@@ -10,7 +10,7 @@ export interface PostSignUpReq {
 }
 
 export const postSignUp = async (userData: PostSignUpReq) => {
-  return await instance.post("/users", userData);
+  return await instance.post("/api/v1/users", userData);
 };
 
 export interface PostSignInReq {
@@ -20,6 +20,10 @@ export interface PostSignInReq {
 
 export const postSignIn = async (userData: PostSignInReq) => {
   // 전체 응답 객체를 반환하도록 설정
-  const response = await loginInstance.post("/login", userData);
+  const response = await loginInstance.post("/login", userData, {
+    headers: {
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+    },
+  });
   return response;
 };

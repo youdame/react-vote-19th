@@ -2,14 +2,12 @@ import axios from "axios";
 
 // 회원가입 요청을 위한 인스턴스
 export const instance = axios.create({
-  baseURL: "/api/v1", // 프록시된 경로
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
 
 // 로그인 요청을 위한 인스턴스
 export const loginInstance = axios.create({
-  baseURL: "/", // 프록시된 경로
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });

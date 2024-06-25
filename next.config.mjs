@@ -18,10 +18,6 @@ const nextConfig = {
         source: "/login", // /login 요청을 프록시
         destination: "http://43.200.141.226/login", // 실제 API 경로
       },
-      {
-        source: "/:path*", // 기타 모든 요청을 프록시
-        destination: "http://43.200.141.226/:path*", // 실제 API 경로
-      },
     ];
   },
 };
