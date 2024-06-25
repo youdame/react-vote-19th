@@ -7,13 +7,27 @@ export const instance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
+// 요청 인터셉터를 사용하여 요청 시 액세스 토큰을 헤더에 추가
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
 // 항상 패칭 요청을 보내면 response.data가 값이 리턴되게
 instance.interceptors.response.use(
-  function (response) {
+  (response) => {
     return response.data;
   },
   // 에러 일괄 처리
-  async (error) => {
+  (error) => {
     console.log(error.message);
     return Promise.reject(error);
   },

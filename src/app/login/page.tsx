@@ -35,9 +35,7 @@ function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: (data: PostSignInReq) => postSignIn(data),
-    onSuccess: (res) => {
-      const accessToken = res.headers["authorization"].split(" ")[1];
-      console.log(accessToken);
+    onSuccess: () => {
       toast.success("로그인이 완료되었습니다.");
       router.push("/");
     },
@@ -78,7 +76,9 @@ function LoginPage() {
             <CheckBox control={control} name="passwordVisibleCheckBox" text="비밀번호 표시" />
           </div>
           <div className="mt-10pxr">
-            <Button disabled={!isValid}>로그인</Button>
+            <Button disabled={!isValid || loginMutation.isPending}>
+              {loginMutation.isPending ? "로그인 중..." : "로그인"}
+            </Button>
           </div>
           <div className="flex gap-7pxr">
             <p>회원이 아니신가요?</p>
