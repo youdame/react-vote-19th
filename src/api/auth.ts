@@ -1,4 +1,4 @@
-import { instance } from "@/api/axiosInstance";
+import { instance, loginInstance } from "@/api/axiosInstance";
 
 export interface PostSignUpReq {
   username: string;
@@ -19,5 +19,7 @@ export interface PostSignInReq {
 }
 
 export const postSignIn = async (userData: PostSignInReq) => {
-  return await instance.post("/login", userData);
+  // 전체 응답 객체를 반환하도록 설정
+  const response = await loginInstance.post("/login", userData);
+  return response;
 };

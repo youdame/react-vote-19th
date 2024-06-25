@@ -16,3 +16,9 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+// 로그인 요청을 위한 별도 인스턴스 (전체 응답 객체를 반환)
+export const loginInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: { "Content-Type": "application/json" },
+});

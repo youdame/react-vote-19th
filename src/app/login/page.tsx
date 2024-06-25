@@ -26,9 +26,7 @@ function LoginPage() {
     control,
     formState: { isValid },
     handleSubmit,
-    getValues,
     setError,
-    clearErrors,
   } = method;
 
   const watchPasswordVisibleCheckBox = useWatch({ name: "passwordVisibleCheckBox", control });
@@ -38,6 +36,8 @@ function LoginPage() {
   const loginMutation = useMutation({
     mutationFn: (data: PostSignInReq) => postSignIn(data),
     onSuccess: (res) => {
+      const accessToken = res.headers["authorization"].split(" ")[1];
+      console.log(accessToken);
       toast.success("로그인이 완료되었습니다.");
       router.push("/");
     },
