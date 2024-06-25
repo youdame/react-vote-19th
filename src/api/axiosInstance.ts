@@ -1,15 +1,10 @@
 import axios from "axios";
 
-// 회원가입 요청을 위한 인스턴스
-export const instance = axios.create({
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true,
-});
+const baseURL = process.env.NEXT_PUBLIC_API_URL || "/api/v1";
 
-// 로그인 요청을 위한 인스턴스
-export const loginInstance = axios.create({
+export const instance = axios.create({
+  baseURL,
   headers: { "Content-Type": "application/json" },
-  withCredentials: true,
 });
 
 // 항상 패칭 요청을 보내면 response.data가 값이 리턴되게
@@ -23,3 +18,9 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+// 로그인 요청을 위한 인스턴스
+export const loginInstance = axios.create({
+  baseURL,
+  headers: { "Content-Type": "application/json" },
+});
