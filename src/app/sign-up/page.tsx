@@ -1,4 +1,5 @@
 "use client";
+import CheckBox from "@/components/common/CheckBox";
 import Input from "@/components/common/Input";
 import { ERROR_PASSWORD_SECOND_EMPTY } from "@/constants/validation";
 import Link from "next/link";
@@ -16,8 +17,8 @@ function SignupPage() {
 
   const watchPassword = useWatch({ name: "password", control });
   const watchPasswordCheck = useWatch({ name: "passwordCheck", control });
+  const watchPasswordVisibleCheckBox = useWatch({ name: "passwordVisibleCheckBox", control });
 
-  const selectStyle = "flex h-40pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
   useEffect(() => {
     if (watchPassword !== watchPasswordCheck && watchPasswordCheck) {
       setError("passwordCheck", {
@@ -28,6 +29,8 @@ function SignupPage() {
       clearErrors("passwordCheck");
     }
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
+
+  const selectStyle = "flex h-40pxr w-200pxr rounded-lg bg-blue-base px-10pxr text-white";
 
   return (
     <div className="flex-center w-full bg-blue-base">
@@ -40,14 +43,14 @@ function SignupPage() {
           name="password"
           label="비밀번호"
           placeholder="영문자와 숫자 포함 8자 이상 입력하세요."
-          type="text"
+          type={watchPasswordVisibleCheckBox ? "text" : "password"}
         />
         <Input
           control={control}
           name="passwordCheck"
           label="비밀번호 확인"
           placeholder="비밀번호를 한 번 더 입력해주세요."
-          type="text"
+          type={watchPasswordVisibleCheckBox ? "text" : "password"}
           rules={{
             required: ERROR_PASSWORD_SECOND_EMPTY,
             validate: {
@@ -58,6 +61,7 @@ function SignupPage() {
             },
           }}
         />
+        <CheckBox control={control} name="passwordVisibleCheckBox" text="비밀번호 표시" />
         <div className="flex-column items-center justify-center gap-20pxr">
           <label className="flex self-start text-20pxr">팀 이름 / 파트 </label>
           <div className="flex w-600pxr justify-between">

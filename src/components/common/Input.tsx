@@ -3,7 +3,6 @@ import {
   ERROR_EMAIL_DUPLICATED,
   ERROR_EMAIL_EMPTY,
   ERROR_PASSWORD_EMPTY,
-  ERROR_PASSWORD_SECOND_EMPTY,
   ERROR_PASSWORD_VALIDATION,
   ERROR_USERNAME_EMPTY,
   ERROR_USERNAME_VALIDATION,
@@ -43,7 +42,7 @@ export default function Input({ label, type, placeholder, control, name, rules }
         // name={field.name}
         // ref={field.ref}
         {...field}
-        className="h-60pxr w-660pxr rounded-xl border border-gray-400 px-15pxr py-18pxr focus:border-blue-base"
+        className="h-60pxr w-660pxr rounded-xl border border-gray-400 px-15pxr py-18pxr focus:border-blue-700"
       />
 
       {error && <p className="text-red-600">{error.message}</p>}
