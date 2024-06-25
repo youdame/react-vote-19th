@@ -10,7 +10,7 @@ export interface PostSignUpReq {
 }
 
 export const postSignUp = async (userData: PostSignUpReq) => {
-  return await instance.post("/api/v1/users", userData);
+  return await instance.post("/users", userData);
 };
 
 export interface PostSignInReq {

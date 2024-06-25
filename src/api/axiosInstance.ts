@@ -1,8 +1,17 @@
 import axios from "axios";
 
+// 회원가입 요청을 위한 인스턴스
 export const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "/api/v1", // 프록시된 경로
   headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
+
+// 로그인 요청을 위한 인스턴스
+export const loginInstance = axios.create({
+  baseURL: "/", // 프록시된 경로
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
 // 항상 패칭 요청을 보내면 response.data가 값이 리턴되게
@@ -16,9 +25,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-// 로그인 요청을 위한 별도 인스턴스 (전체 응답 객체를 반환)
-export const loginInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: { "Content-Type": "application/json" },
-});
