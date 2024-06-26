@@ -5,7 +5,7 @@ import GenSelectBtn from "@/components/common/GenSelectBtn";
 /* TODO : API 연결
 1. 임시 변수
 */
-const isVoteDone = true; // 임시 변수
+const isVoteDone = false; // 임시 변수
 
 function DemoDayPage() {
   return (

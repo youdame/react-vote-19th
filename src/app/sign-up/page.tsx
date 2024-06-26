@@ -64,6 +64,7 @@ function SignupPage() {
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
 
   const router = useRouter();
+
   const signupMutation = useMutation({
     mutationFn: (data: PostSignUpReq) => postSignUp(data),
 

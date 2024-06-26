@@ -8,6 +8,8 @@ import frontData from "@/data/frontData.json";
 import PageTemplate from "@/components/common/PageTemplate";
 import VoteLeaderTemplate from "@/components/leader/VoteLeaderTemplate";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "@/api/leader";
 
 /* TODO : API 연결
 1. frontData
@@ -20,6 +22,15 @@ function VoteFrontPage() {
     // API 연결
     console.log(frontValue);
   };
+
+  const { data: userData } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUsers(),
+  });
+
+  // userData?.map((user)=>{
+  //   user.
+  // })
 
   return (
     <PageTemplate voteTitle="FE 파트장 투표">
