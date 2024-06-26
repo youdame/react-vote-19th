@@ -61,7 +61,7 @@ function LoginPage() {
   };
 
   return (
-    <>
+    <main className="flex min-h-screen justify-center">
       <form onSubmit={handleSubmit(handleOnSubmit)} className="flex-center w-full bg-blue-base">
         <div className="flex-center flex-column rounded-3xl min-h-520pxr w-800pxr gap-20pxr bg-white">
           <Input control={control} name="username" label="아이디" placeholder="아이디를 입력하세요." type="text" />
@@ -89,7 +89,7 @@ function LoginPage() {
         </div>
       </form>
       <DevTool control={control} />
-    </>
+    </main>
   );
 }
 
