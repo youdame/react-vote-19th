@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function ResultFrontPage() {
   const { data: resultData } = useQuery({
-    queryKey: ["results"],
+    queryKey: ["frontResults"],
     queryFn: () => getFrontVoteResult(),
   });
 

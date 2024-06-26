@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function ResultBackPage() {
   const { data: resultData } = useQuery({
-    queryKey: ["results"],
+    queryKey: ["backResults"],
     queryFn: () => getBackVoteResult(),
   });
 
