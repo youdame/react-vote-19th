@@ -15,7 +15,7 @@ interface SelectInputProps {
 export default function SelectInput({ control, name, options, placeholder }: SelectInputProps) {
   const { field } = useController({ control, name, rules: selectInputRules[name] });
   return (
-    <select className="rounded-lg flex h-45pxr w-200pxr bg-blue-base px-10pxr text-white" {...field}>
+    <select className="flex h-45pxr w-200pxr rounded-12pxr bg-blue-base px-10pxr text-white" {...field}>
       <option className="text-white" value="" defaultValue={placeholder} hidden>
         {placeholder}
       </option>
