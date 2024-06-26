@@ -23,7 +23,11 @@ function VoteFrontPage() {
     console.log(frontValue);
   };
 
-  const { data: userData } = useQuery({
+  const {
+    data: userData,
+    isError,
+    isLoading,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: () => getUsers(),
   });

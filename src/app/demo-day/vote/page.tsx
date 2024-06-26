@@ -9,13 +9,43 @@ import teamNameDB from "@/constants/teamNameDB";
 import PageTemplate from "@/components/common/PageTemplate";
 import TeamBtn from "@/components/demo-day/TeamBtn";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
+import { useMutation } from "@tanstack/react-query";
+import { postTeamVote } from "@/api/demo-day";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
+import { error } from "console";
 
 function DemoDayVotePage() {
   const [teamValue, setTeamValue] = useAtom(teamAtom);
 
+  const router = useRouter();
+
+  const teamVoteMutation = useMutation({
+    mutationFn: (teamName: string) => postTeamVote(teamName),
+    onSuccess: () => {
+      toast.success("투표 완료!");
+      router.push("/demo-day/result");
+    },
+    onError: (e) => {
+      console.log(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.status == 401) {
+          toast.error("로그인이 필요합니다.");
+          router.push("/login");
+        }
+        if (e.response?.status == 400) {
+          toast.error(e.response?.data.message);
+        }
+      }
+    },
+  });
+
   const handleVoteClick = () => {
     // API 연결
-    console.log(teamNameDB[teamValue]);
+    // console.log(teamNameDB[teamValue]);
+
+    teamVoteMutation.mutate(teamNameDB[teamValue]);
   };
 
   return (
