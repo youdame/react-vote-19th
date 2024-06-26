@@ -1,7 +1,7 @@
 import Link from "next/link";
+import PageTemplate from "@/components/common/PageTemplate";
 import BigSelectBtn from "@/components/common/BigSelectBtn";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
-import VoteTitle from "@/components/common/VoteTitle";
 
 /* TODO : API 연결
 1. 임시 변수
@@ -11,8 +11,7 @@ const isVoteBEDone = true; // 임시 변수
 
 function LeaderPage() {
   return (
-    <main className="flex-center flex-column">
-      <VoteTitle>파트장 투표</VoteTitle>
+    <PageTemplate voteTitle="파트장 투표">
       <div className="flex gap-100pxr pt-70pxr">
         <div className="flex-column flex-center gap-20pxr">
           {isVoteFEDone ? (
@@ -44,7 +43,7 @@ function LeaderPage() {
           )}
         </div>
       </div>
-    </main>
+    </PageTemplate>
   );
 }
 

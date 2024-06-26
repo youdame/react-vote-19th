@@ -1,6 +1,6 @@
-import GenSelectBtn from "@/components/common/GenSelectBtn";
-import VoteTitle from "@/components/common/VoteTitle";
 import Link from "next/link";
+import PageTemplate from "@/components/common/PageTemplate";
+import GenSelectBtn from "@/components/common/GenSelectBtn";
 
 /* TODO : API 연결
 1. 임시 변수
@@ -9,8 +9,7 @@ const isVoteDone = true; // 임시 변수
 
 function DemoDayPage() {
   return (
-    <main className="flex-center flex-column">
-      <VoteTitle>데모데이 투표</VoteTitle>
+    <PageTemplate voteTitle="데모데이 투표">
       <div className="flex-column gap-25pxr pt-100pxr">
         {isVoteDone ? (
           <GenSelectBtn variant="disabled">투표하기</GenSelectBtn>
@@ -23,7 +22,7 @@ function DemoDayPage() {
           <GenSelectBtn>결과보기</GenSelectBtn>
         </Link>
       </div>
-    </main>
+    </PageTemplate>
   );
 }
 
