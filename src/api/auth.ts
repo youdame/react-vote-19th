@@ -27,3 +27,16 @@ export const postSignIn = async (userData: PostSignInReq) => {
 
   return response;
 };
+
+interface UserInfoRes {
+  id: number;
+  username: string;
+  email: string;
+  name: string;
+  part: string;
+  teamName: string;
+}
+
+export const getUserInfo = async (): Promise<UserInfoRes> => {
+  return await instance.get("/auth");
+};
