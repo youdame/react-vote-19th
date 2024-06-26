@@ -8,7 +8,7 @@ interface GenSelectBtnProps {
 const GenSelectBtn = ({ children, variant }: GenSelectBtnProps) => {
   return (
     <button className={BackVariants({ variant })}>
-      <h3>{children}</h3>
+      <h3 className={TextVariants({ variant })}>{children}</h3>
     </button>
   );
 };
@@ -19,7 +19,19 @@ const BackVariants = cva(`h-45pxr w-150pxr text-white rounded-15pxr`, {
   variants: {
     variant: {
       default: "bg-blue-base",
-      disabled: "bg-blue-disabled cursor-not-allowed",
+      disabled: "bg-gray-400 cursor-not-allowed",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+const TextVariants = cva(``, {
+  variants: {
+    variant: {
+      default: "text-white",
+      disabled: "text-gray-300",
     },
   },
   defaultVariants: {

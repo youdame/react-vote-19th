@@ -23,7 +23,7 @@ const BackVariants = cva(`h-215pxr w-200pxr`, {
   variants: {
     variant: {
       default: "bg-white hover:bg-blue-base",
-      disabled: "bg-blue-disabled cursor-not-allowed",
+      disabled: "bg-gray-400 cursor-not-allowed",
     },
   },
   defaultVariants: {
@@ -47,7 +47,7 @@ const TextVariants = cva(`flex-center flex-column h-full gap-10pxr text-25pxr fo
   variants: {
     variant: {
       default: "text-blue-base hover:text-white",
-      disabled: "text-blue-disabled",
+      disabled: "text-gray-500",
     },
   },
   defaultVariants: {
