@@ -14,7 +14,7 @@ const Header = () => {
     isError,
     isSuccess,
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["userInfo"],
     queryFn: () => getUserInfo(),
   });
 
