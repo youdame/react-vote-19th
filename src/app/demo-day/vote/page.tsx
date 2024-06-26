@@ -28,7 +28,6 @@ function DemoDayVotePage() {
       router.push("/demo-day/result");
     },
     onError: (e) => {
-      console.log(e);
       if (e instanceof AxiosError) {
         if (e.response?.status == 401) {
           toast.error("로그인이 필요합니다.");
@@ -42,9 +41,7 @@ function DemoDayVotePage() {
   });
 
   const handleVoteClick = () => {
-    // API 연결
-    // console.log(teamNameDB[teamValue]);
-
+    if (!teamValue) return;
     teamVoteMutation.mutate(teamNameDB[teamValue]);
   };
 
