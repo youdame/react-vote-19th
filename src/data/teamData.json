@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "team": "Azito",
+    "description": "라이브 아이돌 통합 예약 플랫폼 ✨"
+  },
+  {
+    "id": 1,
+    "team": "BeatBuddy",
+    "description": "대한민국 음악 베뉴 큐레이팅 & 컨시어지 플랫폼"
+  },
+  {
+    "id": 2,
+    "team": "CoupleLog",
+    "description": "MZ세대 커플들을 위한 포토로그 기반 데이트 장소 큐레이션 서비스"
+  },
+  {
+    "id": 3,
+    "team": "PetPlate",
+    "description": "맞춤형 영양 및 보충제 e커머스 플랫폼"
+  },
+  {
+    "id": 4,
+    "team": "TIG",
+    "description": "소비자 우선순위 중심의 스포츠 여가 예약 통합 플랫폼"
+  }
+]

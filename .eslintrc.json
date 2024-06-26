@@ -32,5 +32,6 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "ignorePatterns": ["src/app/globals.css"]
 }

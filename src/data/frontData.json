@@ -1,0 +1,52 @@
+[
+  {
+    "id": 0,
+    "team": "Azito",
+    "name": "이나현"
+  },
+  {
+    "id": 1,
+    "team": "Azito",
+    "name": "조유담"
+  },
+  {
+    "id": 2,
+    "team": "BeatBuddy",
+    "name": "김수현"
+  },
+  {
+    "id": 3,
+    "team": "BeatBuddy",
+    "name": "김동혁"
+  },
+  {
+    "id": 4,
+    "team": "CoupleLog",
+    "name": "김민영"
+  },
+  {
+    "id": 5,
+    "team": "CoupleLog",
+    "name": "안혜연"
+  },
+  {
+    "id": 6,
+    "team": "PetPlate",
+    "name": "김다희"
+  },
+  {
+    "id": 7,
+    "team": "PetPlate",
+    "name": "이지인"
+  },
+  {
+    "id": 8,
+    "team": "TIG",
+    "name": "송은수"
+  },
+  {
+    "id": 9,
+    "team": "TIG",
+    "name": "김승완"
+  }
+]

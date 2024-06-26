@@ -41,6 +41,7 @@ const config: Config = {
         blue: {
           base: "#384084",
           disabled: "rgba(56, 64, 132, 0.5)",
+          selected: "#87CEEB",
         },
       },
     },
