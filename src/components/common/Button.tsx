@@ -6,7 +6,7 @@ export default function Button({ disabled = false, ...attribute }: ButtonProps) 
   return (
     <button
       {...attribute}
-      className={`h-60pxr w-180pxr rounded-xl text-20pxr text-white ${disabled ? "bg-gray-400" : "bg-blue-base"}`}
+      className={`h-60pxr w-180pxr rounded-12pxr text-20pxr text-white ${disabled ? "bg-gray-400" : "bg-blue-base"}`}
     ></button>
   );
 }
