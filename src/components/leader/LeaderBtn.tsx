@@ -7,9 +7,10 @@ import CandBtnTemplate from "@/components/common/CandBtnTemplate";
 interface LeaderBtnProps {
   team: string;
   name: string;
+  username: string;
 }
 
-const LeaderBtn = ({ team, name }: LeaderBtnProps) => {
+const LeaderBtn = ({ team, name, username }: LeaderBtnProps) => {
   // 코드 비효율 고민
   const [frontValue, setFrontValue] = useAtom(frontAtom);
   const [backValue, setBackValue] = useAtom(backAtom);
@@ -23,15 +24,14 @@ const LeaderBtn = ({ team, name }: LeaderBtnProps) => {
     }
   };
 
-  // TODO
   const handleClick = () => {
-    isFront() ? setFrontValue(name) : setBackValue(name);
+    isFront() ? setFrontValue(username) : setBackValue(username);
   };
 
   return (
     <CandBtnTemplate
       sizeVariant="leader"
-      clickVariant={isFront() ? frontValue === name : backValue === name}
+      clickVariant={isFront() ? frontValue === username : backValue === username}
       onClick={handleClick}
     >
       <h3 className="text-13pxr">{team}</h3>

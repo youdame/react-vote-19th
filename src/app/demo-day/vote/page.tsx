@@ -14,7 +14,6 @@ import { postTeamVote } from "@/api/demo-day";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
-import { error } from "console";
 
 function DemoDayVotePage() {
   const [teamValue, setTeamValue] = useAtom(teamAtom);

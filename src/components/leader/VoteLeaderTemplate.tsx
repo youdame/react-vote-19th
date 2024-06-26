@@ -4,6 +4,7 @@ interface LeaderData {
   id: number;
   team: string;
   name: string;
+  username: string;
 }
 
 interface VoteLeaderTemplateProps {
@@ -14,7 +15,7 @@ const VoteLeaderTemplate = ({ data }: VoteLeaderTemplateProps) => {
   return (
     <div className="grid grid-cols-4 gap-30pxr py-30pxr">
       {data.map((element) => (
-        <LeaderBtn key={element.id} team={element.team} name={element.name} />
+        <LeaderBtn key={element.id} team={element.team} name={element.name} username={element.username} />
       ))}
     </div>
   );
