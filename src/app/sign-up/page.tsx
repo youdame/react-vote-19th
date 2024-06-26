@@ -64,6 +64,7 @@ function SignupPage() {
   }, [watchPassword, watchPasswordCheck, setError, clearErrors]);
 
   const router = useRouter();
+
   const signupMutation = useMutation({
     mutationFn: (data: PostSignUpReq) => postSignUp(data),
 
@@ -105,7 +106,7 @@ function SignupPage() {
   return (
     <main className="flex min-h-screen justify-center">
       <form onSubmit={handleSubmit(handleOnSubmit)} className="flex-center w-full bg-blue-base">
-        <div className="flex-column rounded-3xl min-h-800pxr w-800pxr gap-20pxr bg-white px-60pxr py-30pxr">
+        <div className="flex-column min-h-800pxr w-800pxr gap-20pxr rounded-24pxr bg-white px-60pxr py-30pxr">
           <Input control={control} name="name" label="이름" placeholder="이름을 입력하세요." type="text" />
           <Input control={control} name="email" label="이메일" placeholder="이메일을 입력하세요." type="text" />
           <Input control={control} name="username" label="아이디" placeholder="아이디를 입력하세요." type="text" />

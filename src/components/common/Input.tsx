@@ -44,7 +44,7 @@ export default function Input({ label, type, placeholder, control, name, rules }
         // name={field.name}
         // ref={field.ref}
         {...field}
-        className="rounded-xl h-60pxr w-660pxr border border-gray-400 px-15pxr py-18pxr focus:border-blue-700"
+        className="h-60pxr w-660pxr rounded-12pxr border border-gray-400 px-15pxr py-18pxr focus:border-blue-700"
       />
 
       {error && <p className="text-red-600">{error.message}</p>}

@@ -3,17 +3,27 @@ import { cva } from "class-variance-authority";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "#/images/ceos-logo.svg";
-
-/* TODO : API 연결
-1. 임시 변수
-2. 로그인 상태면 로그인한 유저명 렌더링
-3. 로그아웃 버튼 클릭 시 로그아웃
-*/
-const isUser = false; // 임시 변수 (로그인 여부)
+import { useQuery } from "@tanstack/react-query";
+import { getUserInfo } from "@/api/auth";
 
 const Header = () => {
+  const {
+    data: userData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUserInfo(),
+  });
+
+  const isUser = !isError;
+
   const path = usePathname();
   if (path === "/login" || path === "/sign-up") return null;
+
+  const handleLogout = () => {
+    // TODO: 로그아웃 API 연결
+  };
 
   return (
     <nav className="top-0pxr inset-x-0pxr fixed z-50 flex h-100pxr w-full items-center bg-white px-40pxr pt-40pxr">
@@ -23,8 +33,12 @@ const Header = () => {
       <div className="flex-center ml-auto flex gap-15pxr">
         {isUser ? (
           <>
-            <div>Azito FE 이나현</div>
-            <button className={`${BackVariants()} ${TextVariants()}`}>로그아웃</button>
+            <div>
+              {userData?.teamName} {userData?.part} {userData?.name}
+            </div>
+            <button onClick={handleLogout} className={`${BackVariants()} ${TextVariants()}`}>
+              로그아웃
+            </button>
           </>
         ) : (
           <>
