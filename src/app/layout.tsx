@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/common/Header";
 import Providers from "@/app/ReactQueryProvider";
+import { Provider as JotaiProvider } from "jotai";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
@@ -18,10 +19,12 @@ export default function RootLayout({
     <html lang="ko">
       <body className="flex min-h-screen justify-center">
         <Providers>
-          <div className="flex-column w-full">
-            <Header />
-            <div>{children}</div>
-          </div>
+          <JotaiProvider>
+            <div className="flex-column w-full">
+              <Header />
+              <div>{children}</div>
+            </div>
+          </JotaiProvider>
         </Providers>
         <Toaster containerStyle={{ fontSize: "1rem", fontWeight: "600" }} />
       </body>

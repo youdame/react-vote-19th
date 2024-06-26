@@ -3,11 +3,12 @@ import { cva } from "class-variance-authority";
 interface GenSelectBtnProps {
   children: string;
   variant?: "default" | "disabled";
+  onClick?: () => void;
 }
 
-const GenSelectBtn = ({ children, variant }: GenSelectBtnProps) => {
+const GenSelectBtn = ({ children, variant, onClick }: GenSelectBtnProps) => {
   return (
-    <button className={BackVariants({ variant })}>
+    <button onClick={onClick} className={BackVariants({ variant })}>
       <h3 className={TextVariants({ variant })}>{children}</h3>
     </button>
   );
