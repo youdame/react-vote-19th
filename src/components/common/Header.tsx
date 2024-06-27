@@ -22,7 +22,8 @@ const Header = () => {
   if (path === "/login" || path === "/sign-up") return null;
 
   const handleLogout = () => {
-    // TODO: 로그아웃 API 연결
+    localStorage.removeItem("accessToken");
+    window.location.reload(); // 새로고침
   };
 
   return (
