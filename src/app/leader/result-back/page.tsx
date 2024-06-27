@@ -10,9 +10,11 @@ function ResultBackPage() {
     queryFn: () => getBackVoteResult(),
   });
 
+  const backData = resultData?.slice(0, 10);
+
   return (
     <PageTemplate voteTitle="BE 파트장 투표 결과">
-      <ResultPageTemplate data={resultData ?? []} variant="leader" />
+      <ResultPageTemplate data={backData ?? []} variant="leader" />
     </PageTemplate>
   );
 }
