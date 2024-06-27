@@ -41,6 +41,10 @@ function VoteBackPage() {
         if (e.response?.status == 400) {
           toast.error(e.response?.data.message);
         }
+        if (e.response?.status == 401) {
+          toast.error("로그인이 필요합니다.");
+          router.push("/login");
+        }
       }
     },
   });

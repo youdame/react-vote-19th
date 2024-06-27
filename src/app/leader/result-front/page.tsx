@@ -10,9 +10,11 @@ function ResultFrontPage() {
     queryFn: () => getFrontVoteResult(),
   });
 
+  const frontData = resultData?.slice(0, 10);
+
   return (
     <PageTemplate voteTitle="FE 파트장 투표 결과">
-      <ResultPageTemplate data={resultData ?? []} variant="leader" />
+      <ResultPageTemplate data={frontData ?? []} variant="leader" />
     </PageTemplate>
   );
 }
