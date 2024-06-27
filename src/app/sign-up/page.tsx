@@ -1,8 +1,8 @@
 "use client";
 import Button from "@/components/common/Button";
 import CheckBox from "@/components/common/CheckBox";
-import Input from "@/components/common/Input";
-import SelectInput from "@/components/common/SelectInput";
+import Input from "@/components/auth/Input";
+import SelectInput from "@/components/auth/SelectInput";
 import { ERROR_PASSWORD_SECOND_EMPTY } from "@/constants/validation";
 import Link from "next/link";
 import { DevTool } from "@hookform/devtools";

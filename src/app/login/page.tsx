@@ -10,7 +10,7 @@ import { DevTool } from "@hookform/devtools";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
-import Input from "@/components/common/Input";
+import Input from "@/components/auth/Input";
 
 function LoginPage() {
   const method = useForm<FieldValues>({
