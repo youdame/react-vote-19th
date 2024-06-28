@@ -3,11 +3,14 @@ import { cva } from "class-variance-authority";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "#/images/ceos-logo.svg";
-import { dataTagSymbol, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getUserInfo } from "@/api/auth";
-import { useState } from "react";
-
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { isLoggedInAtom } from "@/store/store";
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+
   const {
     data: userData,
     isLoading,
@@ -15,15 +18,23 @@ const Header = () => {
     isSuccess,
   } = useQuery({
     queryKey: ["userInfo"],
-    queryFn: () => getUserInfo(),
+    queryFn: getUserInfo,
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsLoggedIn(true);
+    } else if (isError) {
+      setIsLoggedIn(false);
+    }
+  }, [isSuccess, isError]);
 
   const path = usePathname();
   if (path === "/login" || path === "/sign-up") return null;
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    window.location.reload(); // 새로고침
+    setIsLoggedIn(false);
   };
 
   return (
@@ -33,7 +44,7 @@ const Header = () => {
       </Link>
       <div className="flex-center ml-auto flex gap-15pxr">
         {isLoading && <span>로딩 중 ...</span>}
-        {!isLoading && isError && (
+        {!isLoading && !isLoggedIn && (
           <>
             <Link href="/login">
               <button className={`${BackVariants()} ${TextVariants()}`}>로그인</button>
@@ -45,7 +56,7 @@ const Header = () => {
             </Link>
           </>
         )}
-        {!isLoading && isSuccess && (
+        {!isLoading && isLoggedIn && (
           <>
             <div>
               {userData?.teamName} {userData?.part} {userData?.name}

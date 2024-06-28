@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import Input from "@/components/auth/Input";
+import { useAtom } from "jotai";
+import { isLoggedInAtom } from "@/store/store";
 
 function LoginPage() {
   const method = useForm<FieldValues>({
@@ -34,10 +36,14 @@ function LoginPage() {
   const router = useRouter();
 
   const queryClient = useQueryClient();
+
+  const [, setIsLoggedIn] = useAtom(isLoggedInAtom); // useAtom을 사용합니다
+
   const loginMutation = useMutation({
     mutationFn: (data: PostSignInReq) => postSignIn(data),
     onSuccess: () => {
       toast.success("로그인이 완료되었습니다.");
+      setIsLoggedIn(true);
       queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       router.push("/");
     },
