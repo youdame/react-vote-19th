@@ -9,7 +9,7 @@ import teamNameDB from "@/constants/teamNameDB";
 import PageTemplate from "@/components/common/PageTemplate";
 import TeamBtn from "@/components/demo-day/TeamBtn";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postTeamVote } from "@/api/demo-day";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -20,11 +20,13 @@ function DemoDayVotePage() {
 
   const router = useRouter();
 
+  const queryClient = useQueryClient();
   const teamVoteMutation = useMutation({
     mutationFn: (teamName: string) => postTeamVote(teamName),
     onSuccess: () => {
       toast.success("투표 완료!");
       router.push("/demo-day/result");
+      queryClient.invalidateQueries({ queryKey: ["demoDayresults"] });
     },
     onError: (e) => {
       if (e instanceof AxiosError) {

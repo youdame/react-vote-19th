@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function DemoDayResultPage() {
   const { data: resultData } = useQuery({
-    queryKey: ["results"],
+    queryKey: ["demoDayresults"],
     queryFn: () => getTeamVoteResult(),
   });
 
