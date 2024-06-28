@@ -8,11 +8,13 @@ import Link from "next/link";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { FieldValues, useForm, useWatch } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postSignIn, postSignUp, PostSignUpReq } from "@/api/auth";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { isLoggedInAtom } from "@/store/store";
 
 const teamOptions = [
   { value: "Azito" },
@@ -65,6 +67,10 @@ function SignupPage() {
 
   const router = useRouter();
 
+  const queryClient = useQueryClient();
+
+  const [, setIsLoggedIn] = useAtom(isLoggedInAtom); // useAtom을 사용합니다
+
   const signupMutation = useMutation({
     mutationFn: (data: PostSignUpReq) => postSignUp(data),
 
@@ -73,6 +79,8 @@ function SignupPage() {
         const result = await postSignIn({ username: getValues("username"), password: getValues("password") });
         if (result.status === 200) {
           toast.success("회원가입이 완료되었습니다.");
+          queryClient.invalidateQueries({ queryKey: ["userInfo"] });
+          setIsLoggedIn(true);
           router.push("/");
         }
       } catch (loginError) {
