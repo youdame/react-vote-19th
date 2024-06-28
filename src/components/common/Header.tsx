@@ -19,6 +19,7 @@ const Header = () => {
   } = useQuery({
     queryKey: ["userInfo"],
     queryFn: getUserInfo,
+    enabled: !!localStorage.getItem("accessToken"),
   });
 
   useEffect(() => {
