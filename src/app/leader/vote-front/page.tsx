@@ -7,7 +7,7 @@ import Link from "next/link";
 import PageTemplate from "@/components/common/PageTemplate";
 import VoteLeaderTemplate from "@/components/leader/VoteLeaderTemplate";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUsers, postLeaderVote } from "@/api/leader";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -30,11 +30,13 @@ function VoteFrontPage() {
       return { id: item.id, team: item.teamName, name: item.name, username: item.username };
     });
 
+  const queryClient = useQueryClient();
   const frontVoteMutation = useMutation({
     mutationFn: (partLeaderUsername: string) => postLeaderVote(partLeaderUsername),
     onSuccess: () => {
       toast.success("투표 완료!");
-      router.push("/leader/vote-front");
+      router.push("/leader/result-front");
+      queryClient.invalidateQueries({ queryKey: ["frontResults"] });
     },
     onError: (e) => {
       if (e instanceof AxiosError) {

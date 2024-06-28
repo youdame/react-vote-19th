@@ -8,7 +8,7 @@ import PageTemplate from "@/components/common/PageTemplate";
 import VoteLeaderTemplate from "@/components/leader/VoteLeaderTemplate";
 import GenSelectBtn from "@/components/common/GenSelectBtn";
 import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUsers, postLeaderVote } from "@/api/leader";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
@@ -30,11 +30,14 @@ function VoteBackPage() {
       return { id: item.id, team: item.teamName, name: item.name, username: item.username };
     });
 
+  const queryClient = useQueryClient();
+
   const backVoteMutation = useMutation({
     mutationFn: (partLeaderUsername: string) => postLeaderVote(partLeaderUsername),
     onSuccess: () => {
       toast.success("투표 완료!");
-      router.push("/leader/vote-back");
+      router.push("/leader/result-back");
+      queryClient.invalidateQueries({ queryKey: ["backResults"] });
     },
     onError: (e) => {
       if (e instanceof AxiosError) {
