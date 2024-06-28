@@ -3,9 +3,9 @@ import Button from "@/components/common/Button";
 import CheckBox from "@/components/common/CheckBox";
 
 import { FieldValues, useForm, useWatch } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { postSignIn, PostSignInReq } from "@/api/auth";
+import { getUserInfo, postSignIn, PostSignInReq } from "@/api/auth";
 import { DevTool } from "@hookform/devtools";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -33,10 +33,12 @@ function LoginPage() {
 
   const router = useRouter();
 
+  const queryClient = useQueryClient();
   const loginMutation = useMutation({
     mutationFn: (data: PostSignInReq) => postSignIn(data),
     onSuccess: () => {
       toast.success("로그인이 완료되었습니다.");
+      queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       router.push("/");
     },
     onError: (e) => {
