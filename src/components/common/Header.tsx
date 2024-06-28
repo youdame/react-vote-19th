@@ -5,12 +5,13 @@ import Link from "next/link";
 import Logo from "#/images/ceos-logo.svg";
 import { useQuery } from "@tanstack/react-query";
 import { getUserInfo } from "@/api/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { isLoggedInAtom } from "@/store/store";
+
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
-
+  const [isClient, setIsClient] = useState(false); // 클라이언트 사이드 여부 상태
   const {
     data: userData,
     isLoading,
@@ -19,7 +20,7 @@ const Header = () => {
   } = useQuery({
     queryKey: ["userInfo"],
     queryFn: getUserInfo,
-    enabled: !!localStorage.getItem("accessToken"),
+    enabled: isClient && !!localStorage.getItem("accessToken"),
   });
 
   useEffect(() => {
@@ -29,6 +30,10 @@ const Header = () => {
       setIsLoggedIn(false);
     }
   }, [isSuccess, isError]);
+
+  useEffect(() => {
+    setIsClient(true); // 컴포넌트가 클라이언트에서 렌더링될 때 true로 설정
+  }, []);
 
   const path = usePathname();
   if (path === "/login" || path === "/sign-up") return null;
